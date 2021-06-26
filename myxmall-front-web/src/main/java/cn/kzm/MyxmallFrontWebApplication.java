@@ -10,6 +10,7 @@ public class MyxmallFrontWebApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(MyxmallFrontWebApplication.class, args);
+
     }
 
 }

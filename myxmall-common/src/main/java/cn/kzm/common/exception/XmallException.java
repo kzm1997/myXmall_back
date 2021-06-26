@@ -1,5 +1,7 @@
 package cn.kzm.common.exception;
 
+import java.util.ArrayDeque;
+
 /**
  * @author Exrick
  * @date 2017/8/24

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.DigestUtils;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Date;
 
 
 @Service
@@ -37,7 +38,8 @@ public class RegisterServiceImpl implements RegisterService {
 
         //md5
         String passowrdMd5 = DigestUtils.md5DigestAsHex(password.getBytes(StandardCharsets.UTF_8));
-
+        tbMember.setCreated(new Date());
+        tbMember.setUpdated(new Date());
         tbMember.setPassword(passowrdMd5);
         if (tbMemberMapper.insert(tbMember) == 0) {
             throw new XmallException("用户注册失败");

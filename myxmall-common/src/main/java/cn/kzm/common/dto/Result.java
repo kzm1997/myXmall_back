@@ -1,8 +1,5 @@
 package cn.kzm.common.dto;
 
-import lombok.Data;
-
-@Data
 public class Result<T> {
 
     /**
@@ -28,8 +25,46 @@ public class Result<T> {
     /**
      * 数据
      */
-    private T data;
+    private T result;
 
 
+    public boolean isSuccess() {
+        return success;
+    }
 
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public Integer getCode() {
+        return code;
+    }
+
+    public void setCode(Integer code) {
+        this.code = code;
+    }
+
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public T getResult() {
+        return result;
+    }
+
+    public void setResult(T result) {
+        this.result = result;
+    }
 }
