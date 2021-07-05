@@ -1,9 +1,9 @@
 package cn.kzm.manage.dto.front;
 
 
+import java.io.Serializable;
 
-
-public class MemberLoginRegist {
+public class MemberLoginRegist implements Serializable {
 
     private String userName; //用户名
 

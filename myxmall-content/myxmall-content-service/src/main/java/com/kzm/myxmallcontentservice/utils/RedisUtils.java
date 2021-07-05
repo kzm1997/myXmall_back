@@ -1,4 +1,4 @@
-package com.example.myxmallssoservice.utils;
+package com.kzm.myxmallcontentservice.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -91,8 +91,8 @@ public class RedisUtils {
      * @param key 键
      * @return 值
      */
-    public <T> T get(String key,T t) {
-        return key == null ? null : (T) redisTemplate.opsForValue().get(key);
+    public Object get(String key) {
+        return key == null ? null :  redisTemplate.opsForValue().get(key);
     }
 
     /**

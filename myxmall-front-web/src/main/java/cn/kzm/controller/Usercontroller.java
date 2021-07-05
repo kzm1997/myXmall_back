@@ -4,6 +4,7 @@ import cn.kzm.common.dto.Result;
 import cn.kzm.common.utils.ResultUtil;
 import cn.kzm.manage.dto.front.MemberInfo;
 import cn.kzm.manage.dto.front.MemberLoginRegist;
+import cn.kzm.sso.service.LoginService;
 import cn.kzm.sso.service.RegisterService;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.anji.captcha.model.common.ResponseModel;
@@ -24,6 +25,9 @@ public class Usercontroller {
 
     @Reference
     RegisterService registerService;
+
+    @Reference
+    LoginService loginService;
 
 
     @ApiModelProperty("注册接口")
@@ -50,7 +54,7 @@ public class Usercontroller {
     }
 
     @ApiModelProperty("/登录接口")
-    @RequestMapping("/login")
+    @RequestMapping("/member/login")
     public Result<MemberInfo> login(@RequestBody MemberLoginRegist memberLoginRegist) {
 
 
@@ -63,10 +67,13 @@ public class Usercontroller {
             return new ResultUtil().setErrorMsg(verification.getRepMsg());
         }
 
-        MemberInfo memberInfo=new MemberInfo();
+        MemberInfo memberInfo = new MemberInfo();
 
-        memberInfo=
+        memberInfo = loginService.login(memberLoginRegist.getUserName(), memberLoginRegist.getUserPwd());
+        return new ResultUtil<MemberInfo>().setData(memberInfo);
     }
+
+
 
 
 }

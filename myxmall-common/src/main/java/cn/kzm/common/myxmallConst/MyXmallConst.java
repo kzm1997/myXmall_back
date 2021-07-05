@@ -5,4 +5,8 @@ public interface MyXmallConst {
    public static  final  String SESSION="MyXMALL_SESSION";
 
    public static Long SESSION_TIME=3600l;
+
+   public static String PRODUCT_HOME="MYXMALL_PRODUCT_HOME";
+
+   public static String PRODUCT_ITEM="MYXMALL_PRODUCT_ITEM";
 }

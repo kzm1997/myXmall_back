@@ -5,10 +5,10 @@ import cn.kzm.common.dto.Result;
 
 public class ResultUtil<T> {
 
-    private Result<T> result;
+    private Result<T> result=new Result<>();
 
     public  Result<T> BuildSuccess(){
-        result=new Result<>();
+
         result.setSuccess(true);
         result.setMessage("success");
         result.setCode(200);

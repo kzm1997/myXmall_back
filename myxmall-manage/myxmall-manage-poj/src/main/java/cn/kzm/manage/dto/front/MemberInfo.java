@@ -1,9 +1,9 @@
 package cn.kzm.manage.dto.front;
 
 
+import java.io.Serializable;
 
-
-public class MemberInfo {
+public class MemberInfo implements Serializable {
 
     private Long id;
 

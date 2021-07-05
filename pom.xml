@@ -12,6 +12,7 @@
         <module>myxmall-manage</module>
         <module>myxmall-common</module>
         <module>myxmall-sso</module>
+        <module>myxmall-content</module>
     </modules>
 
     <properties>

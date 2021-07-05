@@ -6,6 +6,7 @@ import cn.kzm.common.myxmallConst.MyXmallConst;
 import cn.kzm.manage.dto.front.MemberInfo;
 import cn.kzm.manage.pojo.TbMember;
 import cn.kzm.sso.service.LoginService;
+import com.alibaba.dubbo.config.annotation.Service;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.myxmallssoservice.Mapper.TbMemberMapper;
 import com.example.myxmallssoservice.utils.RedisUtils;
@@ -17,6 +18,7 @@ import org.springframework.util.DigestUtils;
 import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
+@Service
 public class LoginServiceImpl implements LoginService {
 
     @Autowired
