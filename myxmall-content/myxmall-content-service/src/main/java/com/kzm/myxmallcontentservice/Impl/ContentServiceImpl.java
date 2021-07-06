@@ -1,5 +1,6 @@
 package com.kzm.myxmallcontentservice.Impl;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.json.JSONObject;
 import cn.kzm.common.myxmallConst.MyXmallConst;
 import cn.kzm.manage.dto.front.ProductDet;
@@ -21,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -85,12 +87,15 @@ public class ContentServiceImpl implements ContentService {
     public ProductDet getProductDet(Long productId) {
 
 
+
         //查询缓存
         Object o = redisUtils.get(MyXmallConst.PRODUCT_ITEM + ":" + productId);
         if (o!=null){
             //重置过期时间
             redisUtils.expire(MyXmallConst.PRODUCT_ITEM+":"+productId,1000);
-            return (ProductDet) o;
+            ProductDet productDet = BeanUtil.mapToBean((Map<String, Object>) o, ProductDet.class, null);
+
+            return  productDet;
         }
         TbItem tbItem = tbItemMapper.selectById(productId);
         ProductDet productDet = new ProductDet();
@@ -104,13 +109,13 @@ public class ContentServiceImpl implements ContentService {
         }
         productDet.setSalePrice(tbItem.getPrice());
 
-        TbItemDesc tbItemDesc = tbItemDescMapper.selectById(productId);
+        TbItemDesc tbItemDesc = tbItemDescMapper.selectOne(new QueryWrapper<TbItemDesc>()
+                .lambda().eq(TbItemDesc::getItemId,productId));
         productDet.setDetail(tbItemDesc.getItemDesc());
 
         if (tbItem.getImage() != null && !tbItem.getImage().isEmpty()) {
             String[] images = tbItem.getImage().split(",");
             productDet.setProductImageBig(images[0]);
-
             List<String> list = Arrays.stream(images).collect(Collectors.toList());
             productDet.setProductImageSmall(list);
         }

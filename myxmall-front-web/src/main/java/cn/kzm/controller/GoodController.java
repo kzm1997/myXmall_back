@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -28,11 +29,11 @@ public class GoodController {
         return new ResultUtil<List<TbPanel>>().setData(home);
     }
 
-    @RequestMapping(value = "/goods/productDet",method = RequestMethod.GET)
+    @RequestMapping(value = "/goods/productDet", method = RequestMethod.GET)
     @ApiOperation(value = "商品详情")
-    public Result<ProductDet> getProductDet(Long productId){
-       ProductDet productDet= contentService.getProductDet(productId);
-       return new ResultUtil<ProductDet>().setData(productDet);
+    public Result<ProductDet> getProductDet(@RequestParam("productId") Long productId) {
+        ProductDet productDet = contentService.getProductDet(productId);
+        return new ResultUtil<ProductDet>().setData(productDet);
     }
 }
 
