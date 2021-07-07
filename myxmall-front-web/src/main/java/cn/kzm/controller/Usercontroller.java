@@ -11,9 +11,11 @@ import com.anji.captcha.model.common.ResponseModel;
 import com.anji.captcha.model.vo.CaptchaVO;
 import com.anji.captcha.service.CaptchaService;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -73,7 +75,12 @@ public class Usercontroller {
         return new ResultUtil<MemberInfo>().setData(memberInfo);
     }
 
-
+    @ApiOperation("/校验用户是否登录")
+    @RequestMapping("/user/checkLogin")
+    public Result<MemberInfo> checkLogin(@RequestParam("token") String token) {
+        MemberInfo memberInfo =loginService.checkLogin(token);
+        return new  ResultUtil<MemberInfo>().setData(memberInfo);
+    }
 
 
 }

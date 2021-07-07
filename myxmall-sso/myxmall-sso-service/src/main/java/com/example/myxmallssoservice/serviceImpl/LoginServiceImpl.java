@@ -16,6 +16,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.util.DigestUtils;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Map;
 import java.util.UUID;
 
 @Service
@@ -52,5 +53,19 @@ public class LoginServiceImpl implements LoginService {
         memberInfo.setToken(token);
         redisUtils.set(MyXmallConst.SESSION + token, memberInfo, MyXmallConst.SESSION_TIME);
         return memberInfo;
+    }
+
+    @Override
+    public MemberInfo checkLogin(String token) {
+        Object o = redisUtils.get(MyXmallConst.SESSION + token);
+        MemberInfo memberInfo=new MemberInfo();
+        if (o==null){
+            memberInfo.setState(0);
+            memberInfo.setMessage("用户登录已过期");
+            return memberInfo;
+        }
+        MemberInfo info = BeanUtil.mapToBean((Map<?, ?>) o, MemberInfo.class, null);
+        redisUtils.expire(MyXmallConst.SESSION+token,MyXmallConst.SESSION_TIME);
+        return info;
     }
 }
