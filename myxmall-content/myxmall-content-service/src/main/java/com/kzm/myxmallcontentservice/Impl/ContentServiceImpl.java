@@ -123,4 +123,12 @@ public class ContentServiceImpl implements ContentService {
         redisUtils.set(MyXmallConst.PRODUCT_ITEM+":"+productId,productDet,1000);
         return productDet;
     }
+
+
+    @Override
+    public Boolean delCart(String userId, String itemId) {
+        Long hedl = redisUtils.hdel(MyXmallConst.CART_PRE + userId, itemId);
+         return hedl==null?false:true;
+    }
+
 }

@@ -9,4 +9,6 @@ public interface MyXmallConst {
    public static String PRODUCT_HOME="MYXMALL_PRODUCT_HOME";
 
    public static String PRODUCT_ITEM="MYXMALL_PRODUCT_ITEM";
+
+   public static String CART_PRE="MYCART_PRE";
 }

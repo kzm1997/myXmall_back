@@ -35,5 +35,7 @@ public class GoodController {
         ProductDet productDet = contentService.getProductDet(productId);
         return new ResultUtil<ProductDet>().setData(productDet);
     }
+
+
 }
 

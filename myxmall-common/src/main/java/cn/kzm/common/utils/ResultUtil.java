@@ -15,8 +15,16 @@ public class ResultUtil<T> {
         return result;
     }
 
+    public Result<T>  BuidFailure(){
+        result.setSuccess(false);
+        result.setMessage("failure");
+        result.setCode(500);
+        return result;
+    }
+
     public Result<T> setData(T t){
         this.result.setResult(t);
+        this.result.setSuccess(true);
         this.result.setCode(200);
         return this.result;
     }

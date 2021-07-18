@@ -14,4 +14,6 @@ public interface ContentService {
    List<TbPanel> getHome();
 
     ProductDet getProductDet(Long productId);
+
+    Boolean delCart(String userId, String itemId);
 }
